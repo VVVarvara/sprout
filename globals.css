@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+
+/* ---------- Sprout design tokens ---------- */
+:root {
+  --paper: #f7f7fc;
+  --card: #ffffff;
+  --ink: #18223d;
+  --ink-soft: #68708a;
+  --line: #e5e7f0;
+  --leaf: #5b4bc4;
+  --leaf-dark: #3c2c91;
+  --leaf-tint: #eeecff;
+  --beet: #b44778;
+  --beet-tint: #fbeaf2;
+  --amber: #9a6817;
+  --amber-tint: #fff3d9;
+  --danger: #a63d55;
+  --radius: 12px;
+  --font-display: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: linear-gradient(135deg, #f7f7fc 0%, #fdf8fb 58%, #f1efff 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.9rem; margin: 0 0 0.35rem; }
+h2 { font-size: 1.25rem; margin: 0 0 0.6rem; }
+h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+p { margin: 0.3rem 0; }
+a { color: var(--leaf-dark); }
+
+.muted { color: var(--ink-soft); font-size: 0.9rem; }
+.small { font-size: 0.85rem; }
+
+/* ---------- App shell ---------- */
+.shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 218px; flex-shrink: 0; padding: 1.4rem 1rem;
+  background: linear-gradient(165deg, #171d39 0%, #252052 58%, #3d2862 100%); color: #eef0ff;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  position: sticky; top: 0; height: 100vh;
+}
+.brand {
+  font-family: var(--font-display); font-size: 1.35rem; color: #fff;
+  display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem;
+}
+.brand .leafmark {
+  width: 26px; height: 26px; border-radius: 50% 50% 50% 4px;
+  background: linear-gradient(135deg, #f5a9cb, #8471f0);
+  display: inline-block; transform: rotate(-20deg);
+}
+.sidebar nav { display: flex; flex-direction: column; gap: 0.15rem; }
+.sidebar a {
+  color: #cdd0ea; text-decoration: none; padding: 0.5rem 0.7rem;
+  border-radius: 8px; font-size: 0.95rem;
+}
+.sidebar a:hover { background: rgba(255,255,255,0.09); color: #fff; }
+.sidebar a.active { background: linear-gradient(90deg, #6655d5, #7b4fa9); color: #fff; }
+.sidebar .spacer { flex: 1; }
+.userchip { font-size: 0.83rem; color: #cdd0ea; padding: 0 0.7rem 0.6rem; }
+
+.main { flex: 1; padding: 2rem 2.4rem 4rem; max-width: 1060px; }
+
+@media (max-width: 760px) {
+  .shell { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+  .sidebar .spacer { display: none; }
+  .main { padding: 1.2rem; }
+}
+
+/* ---------- Cards & layout ---------- */
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1.2rem;
+  box-shadow: 0 18px 50px rgba(42, 38, 92, .09);
+}
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+.stat { background: linear-gradient(145deg, #f0edff, #fff1f6); border: none; text-align: center; padding: 1rem; }
+.stat .value { font-family: var(--font-display); font-size: 1.7rem; color: var(--leaf-dark); }
+.stat .label { font-size: 0.8rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.pill {
+  display: inline-block; padding: 0.15rem 0.65rem; border-radius: 999px;
+  font-size: 0.78rem; font-weight: 600;
+}
+.pill.green { background: var(--leaf-tint); color: var(--leaf-dark); }
+.pill.beet { background: var(--beet-tint); color: var(--beet); }
+.pill.amber { background: var(--amber-tint); color: var(--amber); }
+
+/* ---------- Forms ---------- */
+label { display: block; font-size: 0.85rem; font-weight: 600; margin: 0.7rem 0 0.25rem; color: var(--ink-soft); }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"],
+input[type="date"], input[type="file"], select, textarea {
+  width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--line);
+  border-radius: 8px; background: #fff; font: inherit; color: var(--ink);
+}
+textarea { min-height: 84px; resize: vertical; }
+input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--leaf); outline-offset: 1px;
+}
+
+.btn {
+  display: inline-block; border: none; cursor: pointer; font: inherit; font-weight: 600;
+  background: linear-gradient(110deg, #5747bf, #744aa4); color: #fff; padding: 0.6rem 1.3rem; border-radius: 8px;
+  margin-top: 1rem; text-decoration: none;
+  box-shadow: 0 8px 18px rgba(91, 75, 196, .2);
+}
+.btn:hover { background: linear-gradient(110deg, #493ba9, #633b8f); }
+.btn.secondary { background: transparent; color: var(--leaf-dark); border: 1.5px solid var(--leaf); }
+.btn.small { padding: 0.3rem 0.8rem; font-size: 0.85rem; margin-top: 0; }
+.btn.danger { background: transparent; color: var(--danger); border: 1.5px solid var(--danger); }
+
+.alert { padding: 0.7rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; }
+.alert.error { background: #fbe7ed; color: var(--danger); }
+.alert.ok { background: var(--leaf-tint); color: var(--leaf-dark); }
+
+/* ---------- Berry dots (1–5 selectors) — the app's signature control ---------- */
+.berries { display: flex; gap: 0.45rem; margin-top: 0.3rem; }
+.berries input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.berries .berry {
+  width: 42px; height: 42px; border-radius: 50% 50% 50% 8px;
+  border: 2px solid var(--line); background: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--ink-soft); transform: rotate(-15deg);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.berries .berry span { transform: rotate(15deg); }
+.berries input:checked + .berry {
+  background: var(--beet); border-color: var(--beet); color: #fff; transform: rotate(0deg) scale(1.08);
+}
+.berries.green input:checked + .berry { background: var(--leaf); border-color: var(--leaf); }
+.berries input:focus-visible + .berry { outline: 2px solid var(--leaf); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .berries .berry { transition: none; } }
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th { text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); padding: 0.4rem 0.6rem; border-bottom: 1.5px solid var(--line); }
+td { padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--line); }
+tr:hover td { background: #f8f7ff; }
+
+/* ---------- Auth pages ---------- */
+.authwrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: linear-gradient(135deg, #f7f7fc 0%, #fdf8fb 58%, #f1efff 100%); }
+.authcard { width: 100%; max-width: 400px; }
+.authcard .brand { color: var(--ink); justify-content: center; font-size: 1.6rem; margin-bottom: 0.4rem; }
+.authcard .card { padding: 1.6rem 1.8rem; }
+
+.qblock { padding: 1rem 0; border-bottom: 1px dashed var(--line); }
+.qblock:last-of-type { border-bottom: none; }
+.choices { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.4rem; }
+.choices label { display: flex; align-items: center; gap: 0.5rem; font-weight: 400; margin: 0; color: var(--ink); cursor: pointer; }
+.choices input { width: auto; }
