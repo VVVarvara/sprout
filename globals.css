@@ -1,0 +1,159 @@
+/* ---------- Sprout design tokens ---------- */
+:root {
+  --paper: #f5f4ec;      /* oat paper */
+  --card: #fffefa;
+  --ink: #1f2a21;        /* deep leaf ink */
+  --ink-soft: #55614f;
+  --line: #dcdccb;
+  --leaf: #3e7247;       /* primary green */
+  --leaf-dark: #2c5434;
+  --leaf-tint: #e7efe4;
+  --beet: #8a3b5c;       /* secondary accent */
+  --beet-tint: #f3e6ec;
+  --amber: #b97f2a;
+  --amber-tint: #f6ecda;
+  --danger: #a33c2f;
+  --radius: 12px;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: 1.9rem; margin: 0 0 0.35rem; }
+h2 { font-size: 1.25rem; margin: 0 0 0.6rem; }
+h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+p { margin: 0.3rem 0; }
+a { color: var(--leaf-dark); }
+
+.muted { color: var(--ink-soft); font-size: 0.9rem; }
+.small { font-size: 0.85rem; }
+
+/* ---------- App shell ---------- */
+.shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 218px; flex-shrink: 0; padding: 1.4rem 1rem;
+  background: var(--ink); color: #e9eee6;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  position: sticky; top: 0; height: 100vh;
+}
+.brand {
+  font-family: var(--font-display); font-size: 1.35rem; color: #fff;
+  display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.4rem;
+}
+.brand .leafmark {
+  width: 26px; height: 26px; border-radius: 50% 50% 50% 4px;
+  background: linear-gradient(135deg, #6ea25f, #3e7247);
+  display: inline-block; transform: rotate(-20deg);
+}
+.sidebar nav { display: flex; flex-direction: column; gap: 0.15rem; }
+.sidebar a {
+  color: #cdd8c8; text-decoration: none; padding: 0.5rem 0.7rem;
+  border-radius: 8px; font-size: 0.95rem;
+}
+.sidebar a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sidebar a.active { background: var(--leaf); color: #fff; }
+.sidebar .spacer { flex: 1; }
+.userchip { font-size: 0.83rem; color: #aab8a4; padding: 0 0.7rem 0.6rem; }
+
+.main { flex: 1; padding: 2rem 2.4rem 4rem; max-width: 1060px; }
+
+@media (max-width: 760px) {
+  .shell { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; }
+  .sidebar .spacer { display: none; }
+  .main { padding: 1.2rem; }
+}
+
+/* ---------- Cards & layout ---------- */
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1.2rem;
+}
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+.stat { background: var(--leaf-tint); border: none; text-align: center; padding: 1rem; }
+.stat .value { font-family: var(--font-display); font-size: 1.7rem; color: var(--leaf-dark); }
+.stat .label { font-size: 0.8rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.pill {
+  display: inline-block; padding: 0.15rem 0.65rem; border-radius: 999px;
+  font-size: 0.78rem; font-weight: 600;
+}
+.pill.green { background: var(--leaf-tint); color: var(--leaf-dark); }
+.pill.beet { background: var(--beet-tint); color: var(--beet); }
+.pill.amber { background: var(--amber-tint); color: var(--amber); }
+
+/* ---------- Forms ---------- */
+label { display: block; font-size: 0.85rem; font-weight: 600; margin: 0.7rem 0 0.25rem; color: var(--ink-soft); }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"],
+input[type="date"], input[type="file"], select, textarea {
+  width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--line);
+  border-radius: 8px; background: #fff; font: inherit; color: var(--ink);
+}
+textarea { min-height: 84px; resize: vertical; }
+input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--leaf); outline-offset: 1px;
+}
+
+.btn {
+  display: inline-block; border: none; cursor: pointer; font: inherit; font-weight: 600;
+  background: var(--leaf); color: #fff; padding: 0.6rem 1.3rem; border-radius: 8px;
+  margin-top: 1rem; text-decoration: none;
+}
+.btn:hover { background: var(--leaf-dark); }
+.btn.secondary { background: transparent; color: var(--leaf-dark); border: 1.5px solid var(--leaf); }
+.btn.small { padding: 0.3rem 0.8rem; font-size: 0.85rem; margin-top: 0; }
+.btn.danger { background: transparent; color: var(--danger); border: 1.5px solid var(--danger); }
+
+.alert { padding: 0.7rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; }
+.alert.error { background: #f7e6e3; color: var(--danger); }
+.alert.ok { background: var(--leaf-tint); color: var(--leaf-dark); }
+
+/* ---------- Berry dots (1–5 selectors) — the app's signature control ---------- */
+.berries { display: flex; gap: 0.45rem; margin-top: 0.3rem; }
+.berries input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.berries .berry {
+  width: 42px; height: 42px; border-radius: 50% 50% 50% 8px;
+  border: 2px solid var(--line); background: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: var(--ink-soft); transform: rotate(-15deg);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.berries .berry span { transform: rotate(15deg); }
+.berries input:checked + .berry {
+  background: var(--beet); border-color: var(--beet); color: #fff; transform: rotate(0deg) scale(1.08);
+}
+.berries.green input:checked + .berry { background: var(--leaf); border-color: var(--leaf); }
+.berries input:focus-visible + .berry { outline: 2px solid var(--leaf); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .berries .berry { transition: none; } }
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th { text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); padding: 0.4rem 0.6rem; border-bottom: 1.5px solid var(--line); }
+td { padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--line); }
+tr:hover td { background: #faf9f2; }
+
+/* ---------- Auth pages ---------- */
+.authwrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.authcard { width: 100%; max-width: 400px; }
+.authcard .brand { color: var(--ink); justify-content: center; font-size: 1.6rem; margin-bottom: 0.4rem; }
+.authcard .card { padding: 1.6rem 1.8rem; }
+
+.qblock { padding: 1rem 0; border-bottom: 1px dashed var(--line); }
+.qblock:last-of-type { border-bottom: none; }
+.choices { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.4rem; }
+.choices label { display: flex; align-items: center; gap: 0.5rem; font-weight: 400; margin: 0; color: var(--ink); cursor: pointer; }
+.choices input { width: auto; }
